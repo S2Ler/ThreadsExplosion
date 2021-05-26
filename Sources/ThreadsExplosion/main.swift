@@ -9,9 +9,11 @@ var serialQueues: [DispatchQueue] = []
 
 print("Creating \(N) serial queues")
 for i in 0..<N {
-  serialQueues.append(.init(label: "SerialQueue\(i)"))
-  // Replace the line above with the line below to fix threads explosion above GCD limit. 
-  //  serialQueues.append(.init(label: "SerialQueue\(i)", target: .global()))
+    serialQueues.append(.init(label: "SerialQueue\(i)"))
+
+    // Replace the line above with one of the lines below to fix threads explosion above GCD limit.
+    //serialQueues.append(.init(label: "SerialQueue\(i)", target: .global()))
+    //serialQueues.append(.init(label: "SerialQueue\(i)", attributes: .concurrent))
 }
 
 print("Dispatching \(N) long tasks for each serial queue")
